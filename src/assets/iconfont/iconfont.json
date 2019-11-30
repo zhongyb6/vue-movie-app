@@ -1,0 +1,58 @@
+{
+  "id": "1533862",
+  "name": "vue-movie-app",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "753377",
+      "name": "me",
+      "font_class": "me",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "1185756",
+      "name": "Lower triangle",
+      "font_class": "daosanjiao",
+      "unicode": "e64f",
+      "unicode_decimal": 58959
+    },
+    {
+      "icon_id": "2564554",
+      "name": "电影",
+      "font_class": "dianying",
+      "unicode": "e6cb",
+      "unicode_decimal": 59083
+    },
+    {
+      "icon_id": "3386788",
+      "name": "影院",
+      "font_class": "yingyuan",
+      "unicode": "e709",
+      "unicode_decimal": 59145
+    },
+    {
+      "icon_id": "9535167",
+      "name": "返 回",
+      "font_class": "fanhui",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "10231911",
+      "name": "upper",
+      "font_class": "upper",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "10481731",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    }
+  ]
+}
