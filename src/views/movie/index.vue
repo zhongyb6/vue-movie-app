@@ -4,8 +4,13 @@
     <div id="content">
       <div class="movie_menu">
         <router-link tag="div" class="city_name" to="/movie/city">
-          <span>深圳</span>
-          <i class="iconfont icon-daosanjiao"></i>
+          <span>{{ nm }}</span>
+          <i
+            class="iconfont"
+            :class="[
+              $route.path === '/movie/city' ? 'icon-upper' : 'icon-daosanjiao'
+            ]"
+          ></i>
         </router-link>
         <div class="hot_switch">
           <router-link tag="div" class="hot_item" to="/movie/nowPlaying">
@@ -28,11 +33,17 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import HeaderBar from "@/components/Header/index.vue";
 export default {
   name: "MoveIndex",
   components: {
     HeaderBar
+  },
+  computed: {
+    ...mapState({
+      nm: state => state.nm
+    })
   }
 };
 </script>
@@ -55,6 +66,10 @@ export default {
   line-height: 44px;
   margin-left: 20px;
 }
+#content .movie_menu .city_name.router-link-active {
+  color: #ef4238;
+  border-bottom: 2px solid #ef4238;
+}
 #content .movie_menu .city_name i {
   font-size: 14px;
   margin-left: 5px;
@@ -73,8 +88,6 @@ export default {
   margin: 0 12px;
   font-weight: 700;
 }
-
-#content .movie_menu .hot_item.active,
 #content .movie_menu .hot_item.router-link-active {
   color: #ef4238;
   border-bottom: 2px solid #ef4238;

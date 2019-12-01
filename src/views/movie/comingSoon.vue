@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import Card from "@/components/Card/index.vue";
 export default {
   name: "comingSoon",
@@ -33,12 +34,25 @@ export default {
       btnText: "预售"
     };
   },
+  computed: {
+    ...mapState({
+      nm: state => state.nm,
+      id: state => state.id
+    })
+  },
+  watch: {
+    id(newVal) {
+      if (newVal) {
+        this.queryData();
+      }
+    }
+  },
   mounted() {
     this.queryData();
   },
   methods: {
     queryData() {
-      this.$http.get("/api/movieComingList?cityId=30").then(res => {
+      this.$http.get("/api/movieComingList?cityId=" + this.id).then(res => {
         if (res.data.msg === "ok") {
           this.comingSoonList = res.data.data.comingList;
         }

@@ -23,11 +23,18 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import Card from "@/components/Card/index.vue";
 export default {
   name: "Search",
   components: {
     Card
+  },
+  computed: {
+    ...mapState({
+      nm: state => state.nm,
+      id: state => state.id
+    })
   },
   data() {
     return {
@@ -42,16 +49,23 @@ export default {
       if (newVal) {
         this.querySearchDetail(newVal);
       }
+    },
+    id(newVal) {
+      if (newVal) {
+        this.querySearchDetail(this.movieMsg);
+      }
     }
   },
   methods: {
     querySearchDetail(value) {
-      this.$http.get("/api/searchList?cityId=30&kw=" + value).then(res => {
-        if (res.data.msg === "ok") {
-          this.searchList = res.data.data.movies.list;
-          console.log(this.searchList);
-        }
-      });
+      this.$http
+        .get("/api/searchList?cityId=" + this.id + "&kw=" + value)
+        .then(res => {
+          if (res.data.msg === "ok") {
+            this.searchList = res.data.data.movies.list;
+            console.log(this.searchList);
+          }
+        });
     },
     handleToDetail(id) {
       this.$router.push("/movie/detail/n/" + id);

@@ -19,11 +19,18 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import Card from "@/components/Card/index.vue";
 export default {
   name: "nowPlaying",
   components: {
     Card
+  },
+  computed: {
+    ...mapState({
+      nm: state => state.nm,
+      id: state => state.id
+    })
   },
   data() {
     return {
@@ -34,9 +41,16 @@ export default {
   mounted() {
     this.queryData();
   },
+  watch: {
+    id(newVal) {
+      if (newVal) {
+        this.queryData();
+      }
+    }
+  },
   methods: {
     queryData() {
-      this.$http.get("/api/movieOnInfoList?cityId=30").then(res => {
+      this.$http.get("/api/movieOnInfoList?cityId=" + this.id).then(res => {
         if (res.data.msg === "ok") {
           this.nowPlayingList = res.data.data.movieList;
         }

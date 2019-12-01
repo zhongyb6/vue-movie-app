@@ -25,8 +25,8 @@ export default {
     });
   },
   methods: {
-    scrollTo(y) {
-      this.scrollRef.scrollTo(y);
+    toScrollTop(el) {
+      this.scrollRef.scrollToElement(el);
     }
   }
 };
