@@ -4,17 +4,27 @@
       <img v-lazy="setImgWH(info.img)" alt="" />
     </div>
     <div class="info_list" @tap="toDetail(info.id)">
-      <h2 class="ellipsis">
-        {{ info.nm }}
-        <img v-if="info.version" src="@/assets/images/maxs.png" alt="" />
-      </h2>
-      <p>
-        观众评
-        <span class="grade">{{ info.sc }}</span>
-        分
-      </p>
-      <p class="ellipsis">主演: {{ info.star }}</p>
-      <p class="ellipsis">{{ info.showInfo }}</p>
+      <template v-if="cardType === 'search'">
+        <h2 class="ellipsis w100">
+          {{ info.nm }}<span class="grade fr">{{ info.sc }}</span>
+        </h2>
+        <p class="ellipsis w100">{{ info.enm }}</p>
+        <p class="ellipsis w100">{{ info.cat }}</p>
+        <p class="ellipsis w100">{{ info.frt }}</p>
+      </template>
+      <template v-else>
+        <h2 class="ellipsis">
+          {{ info.nm }}
+          <img v-if="info.version" src="@/assets/images/maxs.png" alt="" />
+        </h2>
+        <p>
+          观众评
+          <span class="grade">{{ info.sc }}</span>
+          分
+        </p>
+        <p class="ellipsis">主演: {{ info.star }}</p>
+        <p class="ellipsis">{{ info.showInfo }}</p>
+      </template>
     </div>
     <div class="btn_mall" v-if="showBtn" @tap="buyTicket(info)">
       {{ btnText }}
@@ -32,6 +42,10 @@ export default {
       default: () => {
         return {};
       }
+    },
+    cardType: {
+      type: String,
+      default: ""
     },
     showBtn: {
       type: Boolean,
@@ -92,6 +106,12 @@ export default {
   color: #666;
   line-height: 22px;
   width: 200px;
+}
+.w100 {
+  width: 100% !important;
+}
+.fr {
+  float: right;
 }
 .card .info_list .grade {
   color: #faaf00;

@@ -52,6 +52,13 @@ const routes = [
         }
       },
       {
+        path: "search",
+        component: () =>
+          import(
+            /* webpackChunkName: "Search" */ "@/components/Search/index.vue"
+          )
+      },
+      {
         path: "/",
         redirect: "/movie/nowPlaying"
       }
